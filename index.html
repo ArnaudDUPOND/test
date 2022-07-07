@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        #map {
+            width: 1844px;
+            height: 907px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/TerritoireHauteCorrzeCommunauts_2.js"></script>
+        <script src="data/TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3.js"></script>
+        <script src="data/ZonetudecoursdeauenttesdeBV_4.js"></script>
+        <script src="data/Facisdcoulementtrononhomogne_5.js"></script>
+        <script src="data/Trononhomogne_6.js"></script>
+        <script src="data/Relevdistinctif_7.js"></script>
+        <script src="data/Positiondesstationsdepcheslectriques_8.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[45.20914340416679,1.6313393087772399],[45.86078854382014,2.957671184182198]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_Vuesatellite_0 = L.tileLayer('http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}', {
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_Vuesatellite_0;
+        var layer_Vuecarte_1 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_Vuecarte_1;
+        map.addLayer(layer_Vuecarte_1);
+        function pop_TerritoireHauteCorrzeCommunauts_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Surface (km²)</th>\
+                        <td>' + (feature.properties['Surface'] !== null ? Autolinker.link(feature.properties['Surface'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TerritoireHauteCorrzeCommunauts_2_0() {
+            return {
+                pane: 'pane_TerritoireHauteCorrzeCommunauts_2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_TerritoireHauteCorrzeCommunauts_2');
+        map.getPane('pane_TerritoireHauteCorrzeCommunauts_2').style.zIndex = 402;
+        map.getPane('pane_TerritoireHauteCorrzeCommunauts_2').style['mix-blend-mode'] = 'normal';
+        var layer_TerritoireHauteCorrzeCommunauts_2 = new L.geoJson(json_TerritoireHauteCorrzeCommunauts_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_TerritoireHauteCorrzeCommunauts_2',
+            layerName: 'layer_TerritoireHauteCorrzeCommunauts_2',
+            pane: 'pane_TerritoireHauteCorrzeCommunauts_2',
+            onEachFeature: pop_TerritoireHauteCorrzeCommunauts_2,
+            style: style_TerritoireHauteCorrzeCommunauts_2_0,
+        });
+        bounds_group.addLayer(layer_TerritoireHauteCorrzeCommunauts_2);
+        map.addLayer(layer_TerritoireHauteCorrzeCommunauts_2);
+        function pop_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Surface (km²)</th>\
+                        <td>' + (feature.properties['Surface'] !== null ? Autolinker.link(feature.properties['Surface'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3_0() {
+            return {
+                pane: 'pane_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3',
+                opacity: 1,
+                color: 'rgba(255,0,4,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3');
+        map.getPane('pane_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3').style.zIndex = 403;
+        map.getPane('pane_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3').style['mix-blend-mode'] = 'normal';
+        var layer_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3 = new L.geoJson(json_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3',
+            layerName: 'layer_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3',
+            pane: 'pane_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3',
+            onEachFeature: pop_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3,
+            style: style_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3_0,
+        });
+        bounds_group.addLayer(layer_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3);
+        map.addLayer(layer_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3);
+        function pop_ZonetudecoursdeauenttesdeBV_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Surface (km²)</th>\
+                        <td>' + (feature.properties['SURFACE'] !== null ? Autolinker.link(feature.properties['SURFACE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ZonetudecoursdeauenttesdeBV_4_0() {
+            return {
+                pane: 'pane_ZonetudecoursdeauenttesdeBV_4',
+                opacity: 1,
+                color: 'rgba(142,91,155,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(164,113,88,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ZonetudecoursdeauenttesdeBV_4');
+        map.getPane('pane_ZonetudecoursdeauenttesdeBV_4').style.zIndex = 404;
+        map.getPane('pane_ZonetudecoursdeauenttesdeBV_4').style['mix-blend-mode'] = 'normal';
+        var layer_ZonetudecoursdeauenttesdeBV_4 = new L.geoJson(json_ZonetudecoursdeauenttesdeBV_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ZonetudecoursdeauenttesdeBV_4',
+            layerName: 'layer_ZonetudecoursdeauenttesdeBV_4',
+            pane: 'pane_ZonetudecoursdeauenttesdeBV_4',
+            onEachFeature: pop_ZonetudecoursdeauenttesdeBV_4,
+            style: style_ZonetudecoursdeauenttesdeBV_4_0,
+        });
+        bounds_group.addLayer(layer_ZonetudecoursdeauenttesdeBV_4);
+        map.addLayer(layer_ZonetudecoursdeauenttesdeBV_4);
+        function pop_Facisdcoulementtrononhomogne_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Numéro BV</th>\
+                        <td>' + (feature.properties['BV_CIBLE'] !== null ? Autolinker.link(feature.properties['BV_CIBLE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Code station</th>\
+                        <td>' + (feature.properties['CODE_STAT'] !== null ? Autolinker.link(feature.properties['CODE_STAT'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Type de faciès</th>\
+                        <td>' + (feature.properties['FACIES'] !== null ? Autolinker.link(feature.properties['FACIES'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longueur</th>\
+                        <td>' + (feature.properties['LONG_FACIE'] !== null ? Autolinker.link(feature.properties['LONG_FACIE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Habitat complémentaire 1</th>\
+                        <td>' + (feature.properties['HAB_COMP1'] !== null ? Autolinker.link(feature.properties['HAB_COMP1'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% recouvrement blocs</th>\
+                        <td>' + (feature.properties['BLOCS'] !== null ? Autolinker.link(feature.properties['BLOCS'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% recouvrement pierres</th>\
+                        <td>' + (feature.properties['PIERRES'] !== null ? Autolinker.link(feature.properties['PIERRES'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% recouvrement galets</th>\
+                        <td>' + (feature.properties['GALETS'] !== null ? Autolinker.link(feature.properties['GALETS'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% recouvrement graviers</th>\
+                        <td>' + (feature.properties['GRAVIERS'] !== null ? Autolinker.link(feature.properties['GRAVIERS'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% recouvrement sable</th>\
+                        <td>' + (feature.properties['SABLE'] !== null ? Autolinker.link(feature.properties['SABLE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% recouvrement argile</th>\
+                        <td>' + (feature.properties['ARGILE'] !== null ? Autolinker.link(feature.properties['ARGILE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Habitat complémentaire 2</th>\
+                        <td>' + (feature.properties['HAB_COMP2'] !== null ? Autolinker.link(feature.properties['HAB_COMP2'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Habitat complémentaire 3</th>\
+                        <td>' + (feature.properties['HAB_COMP3'] !== null ? Autolinker.link(feature.properties['HAB_COMP3'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Facisdcoulementtrononhomogne_5_0(feature) {
+            switch(String(feature.properties['FACIES'])) {
+                case 'PROFOND':
+                    return {
+                pane: 'pane_Facisdcoulementtrononhomogne_5',
+                opacity: 1,
+                color: 'rgba(33,0,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'PLAT':
+                    return {
+                pane: 'pane_Facisdcoulementtrononhomogne_5',
+                opacity: 1,
+                color: 'rgba(74,176,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'ESCALIER':
+                    return {
+                pane: 'pane_Facisdcoulementtrononhomogne_5',
+                opacity: 1,
+                color: 'rgba(101,223,133,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'RAPIDE':
+                    return {
+                pane: 'pane_Facisdcoulementtrononhomogne_5',
+                opacity: 1,
+                color: 'rgba(255,178,37,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'RADIER':
+                    return {
+                pane: 'pane_Facisdcoulementtrononhomogne_5',
+                opacity: 1,
+                color: 'rgba(241,114,30,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'CASCADE':
+                    return {
+                pane: 'pane_Facisdcoulementtrononhomogne_5',
+                opacity: 1,
+                color: 'rgba(248,9,37,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Facisdcoulementtrononhomogne_5');
+        map.getPane('pane_Facisdcoulementtrononhomogne_5').style.zIndex = 405;
+        map.getPane('pane_Facisdcoulementtrononhomogne_5').style['mix-blend-mode'] = 'normal';
+        var layer_Facisdcoulementtrononhomogne_5 = new L.geoJson(json_Facisdcoulementtrononhomogne_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Facisdcoulementtrononhomogne_5',
+            layerName: 'layer_Facisdcoulementtrononhomogne_5',
+            pane: 'pane_Facisdcoulementtrononhomogne_5',
+            onEachFeature: pop_Facisdcoulementtrononhomogne_5,
+            style: style_Facisdcoulementtrononhomogne_5_0,
+        });
+        bounds_group.addLayer(layer_Facisdcoulementtrononhomogne_5);
+        map.addLayer(layer_Facisdcoulementtrononhomogne_5);
+        function pop_Trononhomogne_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Numéro  BV</th>\
+                        <td>' + (feature.properties['BV_CIBLE'] !== null ? Autolinker.link(feature.properties['BV_CIBLE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Code station</th>\
+                        <td>' + (feature.properties['CODE_STAT'] !== null ? Autolinker.link(feature.properties['CODE_STAT'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longueur tronçon</th>\
+                        <td>' + (feature.properties['LONG_TRONC'] !== null ? Autolinker.link(feature.properties['LONG_TRONC'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% de recouvrement plat</th>\
+                        <td>' + (feature.properties['%PLAT'] !== null ? Autolinker.link(feature.properties['%PLAT'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% de recouvrement profond</th>\
+                        <td>' + (feature.properties['%PROFOND'] !== null ? Autolinker.link(feature.properties['%PROFOND'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% de recouvrement escalier</th>\
+                        <td>' + (feature.properties['%ESCALIER'] !== null ? Autolinker.link(feature.properties['%ESCALIER'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% de recouvrement rapide</th>\
+                        <td>' + (feature.properties['%RAPIDE'] !== null ? Autolinker.link(feature.properties['%RAPIDE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% de recouvrement radier</th>\
+                        <td>' + (feature.properties['%RADIER'] !== null ? Autolinker.link(feature.properties['%RADIER'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">% de recouvrement cascade</th>\
+                        <td>' + (feature.properties['%CASCADE'] !== null ? Autolinker.link(feature.properties['%CASCADE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Diversité faciès</th>\
+                        <td>' + (feature.properties['DIVERSITE_'] !== null ? Autolinker.link(feature.properties['DIVERSITE_'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Indice de sinuosité</th>\
+                        <td>' + (feature.properties['Is'] !== null ? Autolinker.link(feature.properties['Is'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">D16</th>\
+                        <td>' + (feature.properties['D16'] !== null ? Autolinker.link(feature.properties['D16'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">D50</th>\
+                        <td>' + (feature.properties['D50'] !== null ? Autolinker.link(feature.properties['D50'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">D84</th>\
+                        <td>' + (feature.properties['D84'] !== null ? Autolinker.link(feature.properties['D84'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Commune</th>\
+                        <td>' + (feature.properties['COMMUNE'] !== null ? Autolinker.link(feature.properties['COMMUNE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lieu-dit</th>\
+                        <td>' + (feature.properties['LIEU DIT'] !== null ? Autolinker.link(feature.properties['LIEU DIT'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Surface BV</th>\
+                        <td>' + (feature.properties['SURFACE_BV'] !== null ? Autolinker.link(feature.properties['SURFACE_BV'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Configuration</th>\
+                        <td>' + (feature.properties['CONFIG'] !== null ? Autolinker.link(feature.properties['CONFIG'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Distance à la source</th>\
+                        <td>' + (feature.properties['D_SOURCE'] !== null ? Autolinker.link(feature.properties['D_SOURCE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Présence étangs</th>\
+                        <td>' + (feature.properties['ETANG'] !== null ? Autolinker.link(feature.properties['ETANG'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Distance étangs</th>\
+                        <td>' + (feature.properties['D_ETANG'] !== null ? Autolinker.link(feature.properties['D_ETANG'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Surface BV étangs</th>\
+                        <td>' + (feature.properties['S_ETANG'] !== null ? Autolinker.link(feature.properties['S_ETANG'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pression piétinement BV</th>\
+                        <td>' + (feature.properties['N_P_PIET'] !== null ? Autolinker.link(feature.properties['N_P_PIET'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pression recalibrage BV</th>\
+                        <td>' + (feature.properties['N_P_RECA'] !== null ? Autolinker.link(feature.properties['N_P_RECA'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pression ripisylve BV</th>\
+                        <td>' + (feature.properties['N_P_RIPI'] !== null ? Autolinker.link(feature.properties['N_P_RIPI'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pression moyenne BV</th>\
+                        <td>' + (feature.properties['NIV_PRES'] !== null ? Autolinker.link(feature.properties['NIV_PRES'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pente BV</th>\
+                        <td>' + (feature.properties['PENTE'] !== null ? Autolinker.link(feature.properties['PENTE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Altitude max</th>\
+                        <td>' + (feature.properties['H_MAX'] !== null ? Autolinker.link(feature.properties['H_MAX'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Altitude min</th>\
+                        <td>' + (feature.properties['H_MIN'] !== null ? Autolinker.link(feature.properties['H_MIN'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pente du tronçon</th>\
+                        <td>' + (feature.properties['PENTE_TRON'] !== null ? Autolinker.link(feature.properties['PENTE_TRON'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Trononhomogne_6_0() {
+            return {
+                pane: 'pane_Trononhomogne_6',
+                opacity: 1,
+                color: 'rgba(16,0,243,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Trononhomogne_6');
+        map.getPane('pane_Trononhomogne_6').style.zIndex = 406;
+        map.getPane('pane_Trononhomogne_6').style['mix-blend-mode'] = 'normal';
+        var layer_Trononhomogne_6 = new L.geoJson(json_Trononhomogne_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Trononhomogne_6',
+            layerName: 'layer_Trononhomogne_6',
+            pane: 'pane_Trononhomogne_6',
+            onEachFeature: pop_Trononhomogne_6,
+            style: style_Trononhomogne_6_0,
+        });
+        bounds_group.addLayer(layer_Trononhomogne_6);
+        map.addLayer(layer_Trononhomogne_6);
+        function pop_Relevdistinctif_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Numero du bassin versant</th>\
+                        <td>' + (feature.properties['BV'] !== null ? Autolinker.link(feature.properties['BV'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Code station</th>\
+                        <td>' + (feature.properties['STATION'] !== null ? Autolinker.link(feature.properties['STATION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Type</th>\
+                        <td>' + (feature.properties['TYPE'] !== null ? Autolinker.link(feature.properties['TYPE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Relevdistinctif_7_0(feature) {
+            switch(String(feature.properties['TYPE'])) {
+                case 'SPOT-CHECKS':
+                    return {
+                pane: 'pane_Relevdistinctif_7',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,235,78,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'TRANSECT':
+                    return {
+                pane: 'pane_Relevdistinctif_7',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,67,240,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'WOLMAN':
+                    return {
+                pane: 'pane_Relevdistinctif_7',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(182,0,124,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Relevdistinctif_7');
+        map.getPane('pane_Relevdistinctif_7').style.zIndex = 407;
+        map.getPane('pane_Relevdistinctif_7').style['mix-blend-mode'] = 'normal';
+        var layer_Relevdistinctif_7 = new L.geoJson(json_Relevdistinctif_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Relevdistinctif_7',
+            layerName: 'layer_Relevdistinctif_7',
+            pane: 'pane_Relevdistinctif_7',
+            onEachFeature: pop_Relevdistinctif_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Relevdistinctif_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Relevdistinctif_7);
+        function pop_Positiondesstationsdepcheslectriques_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Numéro du BV</th>\
+                        <td>' + (feature.properties['BV'] !== null ? Autolinker.link(feature.properties['BV'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Code station</th>\
+                        <td>' + (feature.properties['CODE_STAT'] !== null ? Autolinker.link(feature.properties['CODE_STAT'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Position</th>\
+                        <td>' + (feature.properties['POSITION'] !== null ? Autolinker.link(feature.properties['POSITION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longueur</th>\
+                        <td>' + (feature.properties['LONGUEUR'] !== null ? Autolinker.link(feature.properties['LONGUEUR'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Positiondesstationsdepcheslectriques_8_0(feature) {
+            switch(String(feature.properties['POSITION'])) {
+                case 'AMONT':
+                    return {
+                pane: 'pane_Positiondesstationsdepcheslectriques_8',
+                shape: 'triangle',
+                radius: 6.400000000000002,
+                opacity: 1,
+                color: 'rgba(128,17,25,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,30,42,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'AVAL':
+                    return {
+                pane: 'pane_Positiondesstationsdepcheslectriques_8',
+                shape: 'triangle',
+                radius: 6.400000000000002,
+                opacity: 1,
+                color: 'rgba(61,128,53,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(84,176,74,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Positiondesstationsdepcheslectriques_8');
+        map.getPane('pane_Positiondesstationsdepcheslectriques_8').style.zIndex = 408;
+        map.getPane('pane_Positiondesstationsdepcheslectriques_8').style['mix-blend-mode'] = 'normal';
+        var layer_Positiondesstationsdepcheslectriques_8 = new L.geoJson(json_Positiondesstationsdepcheslectriques_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Positiondesstationsdepcheslectriques_8',
+            layerName: 'layer_Positiondesstationsdepcheslectriques_8',
+            pane: 'pane_Positiondesstationsdepcheslectriques_8',
+            onEachFeature: pop_Positiondesstationsdepcheslectriques_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Positiondesstationsdepcheslectriques_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Positiondesstationsdepcheslectriques_8);
+        var baseMaps = {"Vue carte": layer_Vuecarte_1,"Vue satellite": layer_Vuesatellite_0,};
+        L.control.layers(baseMaps,{'Position des stations de pêches électriques<br /><table><tr><td style="text-align: center;"><img src="legend/Positiondesstationsdepcheslectriques_8_AMONT0.png" /></td><td>AMONT</td></tr><tr><td style="text-align: center;"><img src="legend/Positiondesstationsdepcheslectriques_8_AVAL1.png" /></td><td>AVAL</td></tr></table>': layer_Positiondesstationsdepcheslectriques_8,'Relevé distinctif<br /><table><tr><td style="text-align: center;"><img src="legend/Relevdistinctif_7_SPOTCHECKS0.png" /></td><td>SPOT-CHECKS</td></tr><tr><td style="text-align: center;"><img src="legend/Relevdistinctif_7_TRANSECT1.png" /></td><td>TRANSECT</td></tr><tr><td style="text-align: center;"><img src="legend/Relevdistinctif_7_WOLMAN2.png" /></td><td>WOLMAN</td></tr></table>': layer_Relevdistinctif_7,'<img src="legend/Trononhomogne_6.png" /> Tronçon homogène': layer_Trononhomogne_6,'Faciès d\'écoulement tronçon homogène<br /><table><tr><td style="text-align: center;"><img src="legend/Facisdcoulementtrononhomogne_5_PROFOND0.png" /></td><td>PROFOND</td></tr><tr><td style="text-align: center;"><img src="legend/Facisdcoulementtrononhomogne_5_PLAT1.png" /></td><td>PLAT</td></tr><tr><td style="text-align: center;"><img src="legend/Facisdcoulementtrononhomogne_5_ESCALIER2.png" /></td><td>ESCALIER</td></tr><tr><td style="text-align: center;"><img src="legend/Facisdcoulementtrononhomogne_5_RAPIDE3.png" /></td><td>RAPIDE</td></tr><tr><td style="text-align: center;"><img src="legend/Facisdcoulementtrononhomogne_5_RADIER4.png" /></td><td>RADIER</td></tr><tr><td style="text-align: center;"><img src="legend/Facisdcoulementtrononhomogne_5_CASCADE5.png" /></td><td>CASCADE</td></tr></table>': layer_Facisdcoulementtrononhomogne_5,'<img src="legend/ZonetudecoursdeauenttesdeBV_4.png" /> Zone étude cours d\'eau en têtes de BV': layer_ZonetudecoursdeauenttesdeBV_4,'<img src="legend/TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3.png" /> Territoire  de la déclaration d\'intérêt général de Haute Corrèze Communautés': layer_TerritoiredeladclarationdintrtgnraldeHauteCorrzeCommunauts_3,'<img src="legend/TerritoireHauteCorrzeCommunauts_2.png" /> Territoire Haute Corrèze Communautés': layer_TerritoireHauteCorrzeCommunauts_2,}).addTo(map);
+        setBounds();
+        resetLabels([layer_Facisdcoulementtrononhomogne_5]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Facisdcoulementtrononhomogne_5]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Facisdcoulementtrononhomogne_5]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Facisdcoulementtrononhomogne_5]);
+        });
+        </script>
+    </body>
+</html>
